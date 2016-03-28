@@ -23,7 +23,7 @@ func main() {
 	}
 	defer nc.Close()
 
-	msg, quit := make(chan *nats.Msg), make(chan os.Signal)
+	msg, quit := make(chan *nats.Msg), make(chan os.Signal, 1)
 	signal.Notify(quit, os.Interrupt)
 	nc.Subscribe(msgSubject, func(m *nats.Msg) {
 		msg <- m
