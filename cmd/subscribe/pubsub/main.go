@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	"os/signal"
 	"strconv"
@@ -40,12 +39,12 @@ func main() {
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, os.Interrupt)
 	for range quit {
-		fmt.Println("Quitting...")
+		log.Info("Quitting...")
 		for _, w := range workers {
-			fmt.Println("Sending SIGINT to worker", w.Index)
+			log.Info("Sending SIGINT to worker", w.Index)
 			w.Close()
 			for range w.IsClosed {
-				fmt.Println("Closed connection of worker", w.Index)
+				log.Info("Closed connection of worker", w.Index)
 				break
 			}
 		}

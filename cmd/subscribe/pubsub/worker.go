@@ -1,8 +1,7 @@
 package main
 
 import (
-	"fmt"
-
+	log "github.com/Sirupsen/logrus"
 	"github.com/nats-io/nats"
 )
 
@@ -25,7 +24,7 @@ func NewWorker(index int) *Worker {
 		IsClosed: make(chan bool),
 
 		handler: func(msg *nats.Msg) {
-			fmt.Printf("[WORKER %d] Receive a message: %s\n", index, string(msg.Data))
+			log.Infof("[WORKER %d] Receive a message: %s\n", index, string(msg.Data))
 		},
 		quit: make(chan struct{}),
 	}

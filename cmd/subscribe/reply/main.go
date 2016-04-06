@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	"os/signal"
 
@@ -32,10 +31,10 @@ func main() {
 	for {
 		select {
 		case m := <-msg:
-			fmt.Printf("Received message\nSubject: %s\nData: %s\nReply: %s\n", m.Subject, m.Data, m.Reply)
+			log.Infof("Received message\nSubject: %s\nData: %s\nReply: %s\n", m.Subject, m.Data, m.Reply)
 			nc.Publish(m.Reply, []byte("Hello there!"))
 		case <-quit:
-			fmt.Println("Terminating process...")
+			log.Info("Terminating process...")
 			return
 		}
 	}

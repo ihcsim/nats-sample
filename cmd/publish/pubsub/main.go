@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 
 	log "github.com/Sirupsen/logrus"
@@ -26,6 +25,6 @@ func main() {
 	if err := nc.Publish(msgSubject, []byte(msg)); err != nil {
 		log.WithFields(log.Fields{"server-msg": err}).Errorf("Unable to publish message %q\n", msg)
 	} else {
-		fmt.Printf("Publishing message %q\n", msg)
+		log.Infof("Publishing message %q\n", msg)
 	}
 }

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	"time"
 
@@ -28,5 +27,5 @@ func main() {
 		log.WithFields(log.Fields{"server-msg": err}).Fatal("Request operation failed")
 	}
 
-	fmt.Printf("Received reply\nSubject: %s\nData: %s\nReply: %s\n", m.Subject, m.Data, m.Reply)
+	log.Infof("Received reply\nSubject: %s\nData: %s\nReply: %s\n", m.Subject, m.Data, m.Reply)
 }
