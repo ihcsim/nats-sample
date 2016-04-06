@@ -10,7 +10,7 @@ Start the NATS Docker container:
 $ scripts/start.sh
 ```
 
-### NATS Publish Subscribe
+### Publish/Subscribe
 
 NATS publish subscribe is a one-to-many communication. A publisher sends a message on a subject. Any active subscriber listening on that subject receives the message. For more information on this toppic, refer the NATS documentation [here](http://nats.io/documentation/concepts/nats-pub-sub/).
 
@@ -45,9 +45,9 @@ $ NATS_HOST=192.168.99.100:4222 WORKERS_COUNT=4 go run publisher/pubsub/main.go 
 [WORKER 2] Received a message: Hello World
 ```
 
-### NATS Request Reply
+### Request/Reply
 
-n a request-response exchange, publish request operation publishes a message with a reply subject expecting a response on that reply subject. The request creates an inbox and performs a request call with the inbox reply and returns the first reply received. Refer hat [NATS documentation](http://nats.io/documentation/concepts/nats-req-rep/) for more information.
+In a request-response exchange, publish request operation publishes a message with a reply subject expecting a response on that reply subject. The request creates an inbox and performs a request call with the inbox reply and returns the first reply received. Refer hat [NATS documentation](http://nats.io/documentation/concepts/nats-req-rep/) for more information.
 
 To start the request-reply subscriber:
 
@@ -79,6 +79,36 @@ Received message
 Subject: natssample.reply
 Data: Hello World
 Reply: _INBOX.Y0M7SHOBZ1FHAVJDCE1QH6
+```
+
+### Encoded Channel
+
+An encoded connection wraps a bare connection to a NATS server, providing support for encoding and decoding messages from raw Go types. Refer the NATS [documentation](https://godoc.org/github.com/nats-io/nats#pkg-constants) for supported encoders. This example also demonstrates how to bind channels to encoded communication.
+
+To start the encoded connection subscriber:
+
+```sh
+$ go run cmd/subscriber/encoded/main.go
+```
+
+When done, use CTL-C to terminate the subscriber.
+
+To start the encoded connection publisher:
+
+```sh
+$ go run cmd/publisher/encoded/main.go
+```
+
+By default, the publisher and subscriber looks for the NATS server at `nats://localhost:4222`. Use the `NATS_HOST` environmental variable to override the default server IP address and port.
+
+For example:
+
+```sh
+$ NATS_HOST=192.168.99.100:4222 go run publisher/encoded/main.go publisher/encoded/data.go
+INFO[0000] Publishing data &main.Data{Name:"derek", Age:22, Address:"140 New Montgomery Street"}
+
+$ NATS_HOST=192.168.99.100:4222  go run publisher/encoded/main.go publisher/encoded/data.go
+INFO[0004] Received data &main.Data{Name:"derek", Age:22, Address:"140 New Montgomery Street"}
 ```
 
 ## License
