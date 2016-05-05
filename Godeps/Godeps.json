@@ -1,0 +1,33 @@
+{
+	"ImportPath": "github.com/ihcsim/nats-sample",
+	"GoVersion": "go1.6",
+	"GodepVersion": "v62",
+	"Packages": [
+		"./..."
+	],
+	"Deps": [
+		{
+			"ImportPath": "github.com/Sirupsen/logrus",
+			"Comment": "v0.10.0-16-gcd7d1bb",
+			"Rev": "cd7d1bbe41066b6c1f19780f895901052150a575"
+		},
+		{
+			"ImportPath": "github.com/nats-io/nats",
+			"Comment": "v1.1.6-145-g6f8a573",
+			"Rev": "6f8a5734602782ce3ab3874b474a1b215acc7ed8"
+		},
+		{
+			"ImportPath": "github.com/nats-io/nats/encoders/builtin",
+			"Comment": "v1.1.6-145-g6f8a573",
+			"Rev": "6f8a5734602782ce3ab3874b474a1b215acc7ed8"
+		},
+		{
+			"ImportPath": "github.com/nats-io/nuid",
+			"Rev": "a5152d67cf63cbfb5d992a395458722a45194715"
+		},
+		{
+			"ImportPath": "golang.org/x/sys/unix",
+			"Rev": "b776ec39b3e54652e09028aaaaac9757f4f8211a"
+		}
+	]
+}
