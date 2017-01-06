@@ -1,5 +1,7 @@
 # nats-sample
 
+[![Codeship Status for ihcsim/nats-sample](https://app.codeship.com/projects/c64f0310-b667-0134-c27d-5e3aa6825658/status?branch=master)](https://app.codeship.com/projects/194354)
+
 This project explores the different communication approaches between NATS publishers and subscribers. The code uses the [NATS Go client](http://nats.io/documentation/clients/nats-client-go/) to communicate with a [NATS server Docker container](https://hub.docker.com/_/nats/).
 
 ## Getting Started
